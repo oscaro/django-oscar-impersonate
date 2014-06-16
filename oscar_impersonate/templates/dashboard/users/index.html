@@ -1,0 +1,16 @@
+{% extends 'dashboard/users/base_index.html' %}
+
+{% load i18n %}
+
+{% block user_list_row_actions %}
+    {{ block.super }}
+
+    {% if user.pk != request.user.pk %}
+        {% if user.is_impersonate %}
+            {# In case we're impersonating and admin #}
+            <a href="{% url 'impersonate-stop' %}" class="btn btn-info">{% trans "Stop" %}</a>
+        {% else %}
+            <a href="{% url 'impersonate-start' user.id %}" class="btn btn-info">{% trans "Log as" %}</a>
+        {% endif %}
+    {% endif %}
+{% endblock user_list_row_actions %}
