@@ -13,7 +13,7 @@ class OscarImpersonateMiddleWare:
     def process_response(self, request, response):
         """
         Replace ``<body>`` open tag with partials.
-        (*highly* inspired from Django Debug Toolbar's middelware)
+        (*highly* inspired from Django Debug Toolbar's middleware)
         """
 
         if request.impersonator is None:

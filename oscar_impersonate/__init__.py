@@ -5,7 +5,7 @@ VERSION = (0, 0, 1, 'alpha', 0)
 import os
 
 OSCAR_IMPERSONATE_BASE_DIR = os.path.dirname(__file__)
-OSCAR_IMPERSONATE_TEMPLATE_DIRS = os.path.join(OSCAR_IMPERSONATE_BASE_DIR, 'templates')
+OSCAR_IMPERSONATE_TEMPLATE_DIR = os.path.join(OSCAR_IMPERSONATE_BASE_DIR, 'templates')
 
 
 def get_version():
