@@ -3,7 +3,7 @@ django-oscar-impersonate
 ========================
 
 :Info: Wrapper of django-impersonate for django-oscar
-:Version: 0.0.1-alpha
+:Version: 0.0.1-beta
 :Author: Nicolas Dubois <nicolas.c.dubois@gmail.com>
 
 Dependencies

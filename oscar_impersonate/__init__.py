@@ -1,4 +1,4 @@
-VERSION = (0, 0, 1, 'alpha', 0)
+VERSION = (0, 0, 1, 'beta', 0)
 
 # taken from django-impersonate (which took from django-registration)
 
