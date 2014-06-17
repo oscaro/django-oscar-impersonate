@@ -23,50 +23,48 @@ Installation
 Use
 ===
 
-**``django-oscar-impersonate`` relies on ``django-impersonate``** (which is installed )
+``django-oscar-impersonate`` relies on ``django-impersonate` (which is installed )
 
-1. Add ``impersonate`` to your ``INSTALLED_APPS``.
 
-.. code:: python
+#. Add ``impersonate`` to your ``INSTALLED_APPS``
+    .. code:: python
 
-    INSTALLED_APPS = (
-        # …
-        'impersonate',
-    )
+        INSTALLED_APPS = (
+            # …
+            'impersonate',
+        )
 
-2. Add both ``django-impersonate`` and ``django-oscar-impersonate`` middlewares
-    (``django-impersonate``'s must be declared before ``django-oscar-impersonate``'s)
 
-.. code:: python
+#. Add both ``django-impersonate`` and ``django-oscar-impersonate`` middlewares
+    .. code:: python
 
-    MIDDLEWARE_CLASSES = (
-        # …
-        'impersonate.middleware.ImpersonateMiddleware',
-        'oscar_impersonate.middleware.OscarImpersonateMiddleWare',
-    )
+        MIDDLEWARE_CLASSES = (
+            # …
+            'impersonate.middleware.ImpersonateMiddleware',
+            'oscar_impersonate.middleware.OscarImpersonateMiddleWare',  # after impersonate's
+        )
 
-3. Add ``django-impersonate`` URLs
 
-.. code:: python
+#. Add ``django-impersonate`` URLs
+    .. code:: python
 
-    urlpatterns = patterns('',
-        # …
-        url(r'^impersonate/', include('impersonate.urls')),
-        # …
-    )
+        urlpatterns = patterns('',
+            # …
+            url(r'^impersonate/', include('impersonate.urls')),
+            # …
+        )
 
-4. Add ``OSCAR_IMPERSONATE_TEMPLATE_DIRS`` to ``TEMPLATE_DIRS``, before Oscar's.
+#. Add ``OSCAR_IMPERSONATE_TEMPLATE_DIRS`` to ``TEMPLATE_DIRS``, before Oscar's.
+    .. code:: python
 
-.. code:: python
+        from oscar import OSCAR_MAIN_TEMPLATE_DIR
+        from oscar_impersonate import OSCAR_IMPERSONATE_TEMPLATE_DIR
 
-    from oscar import OSCAR_MAIN_TEMPLATE_DIR
-    from oscar_impersonate import OSCAR_IMPERSONATE_TEMPLATE_DIR
-
-    TEMPLATE_DIRS = (
-        location('templates'),
-        OSCAR_IMPERSONATE_TEMPLATE_DIR,
-        OSCAR_MAIN_TEMPLATE_DIR,
-    )
+        TEMPLATE_DIRS = (
+            location('templates'),
+            OSCAR_IMPERSONATE_TEMPLATE_DIR,
+            OSCAR_MAIN_TEMPLATE_DIR,
+        )
 
 Functionality and custom settings
 =================================
@@ -79,10 +77,10 @@ Dashboard
 .. image:: docs/_static/images/screenshot-dashboard-customer-list.png
     :alt: Customer dashboard with “Log as” button
 
-When a staff member impersonates a customer, a button appears to stop impersonification.
+When a staff member impersonates a customer, a button appears to stop impersonation.
 
-.. image:: docs/_static/images/screenshot-dashboard-customer-list-impersonification.png
-    :alt: Customer dashboard with ”Stop impersonification” button
+.. image:: docs/_static/images/screenshot-dashboard-customer-list-impersonation.png
+    :alt: Customer dashboard with ”Stop impersonation button
 
 Toolbar
 -------
@@ -90,7 +88,7 @@ Toolbar
 When a staff member impersonates a customer, a small toolbar appears at the top to display who
 is impersonated
 
-.. image:: docs/_static/images/screenshot-sandbox-homepage-impersonification.png
+.. image:: docs/_static/images/screenshot-sandbox-homepage-impersonation.png
     :alt: Homepage from Oscar sandbox
 
 
