@@ -9,9 +9,9 @@ django-oscar-impersonate
 Dependencies
 ============
 
-* It was written for Python 3.3+ and Django 1.6+
-* It depends on your project using the ``django.contrib.session`` framework
-    (requirement from ``django-impersonate``)
+- It was written for Python 3.3+ and Django 1.6+
+- It depends on your project using the ``django.contrib.session`` framework (requirement
+from ``django-impersonate``)
 
 Installation
 ============
