@@ -6,6 +6,6 @@
         {% trans "is logged as" %}
         {% firstof user.get_full_name user.username user %}
         •
-        <a href="{% url 'impersonate-stop' %}">{% trans "Stop impersonification" %}</a>
+        <a href="{% url 'impersonate-stop' %}">{% trans "Stop impersonation" %}</a>
     </div>
 {% endif %}
