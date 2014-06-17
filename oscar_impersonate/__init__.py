@@ -1,8 +1,12 @@
 VERSION = (0, 0, 1, 'alpha', 0)
 
+# taken from django-impersonate (which took from django-registration)
 
-# taken from django-registration
-# taken from django-impersonate
+import os
+
+OSCAR_IMPERSONATE_BASE_DIR = os.path.dirname(__file__)
+OSCAR_IMPERSONATE_TEMPLATE_DIRS = os.path.join(OSCAR_IMPERSONATE_BASE_DIR, 'templates')
+
 
 def get_version():
     """
