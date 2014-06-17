@@ -1,0 +1,11 @@
+{% extends "oscar_impersonate/dashboard/users/detail.html" %}
+
+{% load i18n %}
+
+{% block user_detail_actions %}
+
+    {{ block.super }}
+
+    <a href="{% url 'impersonate-start' customer.pk %}" class="btn btn-primary btn-large">{% trans "Log as this customer" %}</a>
+
+{% endblock user_detail_actions %}
