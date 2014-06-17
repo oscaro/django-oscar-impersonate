@@ -1,10 +1,12 @@
 from setuptools import setup, find_packages
 
+from oscar_impersonate import get_version
+
 
 setup(
 
     name='django-oscar-impersonate',
-    version='0.1',
+    version=get_version(),
     url='https://github.com/oscaro/django-oscar-impersonate',
     author="Nicolas Dubois",
     author_email="nicolas.c.dubois@gmail.com",
