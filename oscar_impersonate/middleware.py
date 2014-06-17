@@ -12,19 +12,24 @@ class OscarImpersonateMiddleWare:
 
     def process_response(self, request, response):
         """
-        Replace ``<body>`` open tag with partials.
+        Replace ``<body>`` open tag with partial/toolbar.html template.
         (*highly* inspired from Django Debug Toolbar's middleware)
         """
 
         if request.impersonator is None:
+            """
+            No impersonification session, return response
+            """
             return response
 
-        # Check for responses where the toolbar can't be inserted.
         content_encoding = response.get('Content-Encoding', '')
         content_type = response.get('Content-Type', '').split(';')[0]
         if any((getattr(response, 'streaming', False),
                 'gzip' in content_encoding,
                 content_type not in HTML_CONTENT_TYPES)):
+            """
+            Either the response is streaming, or it's gzipped, or it's not even HTML
+            """
             return response
 
         html = force_text(response.content, encoding=settings.DEFAULT_CHARSET)
@@ -33,6 +38,9 @@ class OscarImpersonateMiddleWare:
         matches = re.findall(body_open_tag_pattern, html)
 
         if not len(matches) > 0:
+            """
+            ``<body>`` open tag is not found.
+            """
             return response
 
         body_open_tag = matches[0]
