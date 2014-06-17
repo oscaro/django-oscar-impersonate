@@ -1,0 +1,11 @@
+{% load i18n %}
+
+{% if impersonator %}
+    <div class="alert alert-info" id="oscar-impersonate-toolbar" style="text-align:center">
+        {% firstof impersonator.get_full_name impersonator.username impersonator %}
+        {% trans "is logged as" %}
+        {% firstof user.get_full_name user.username user %}
+        •
+        <a href="{% url 'impersonate-stop' %}">{% trans "Stop impersonation" %}</a>
+    </div>
+{% endif %}

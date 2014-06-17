@@ -1,0 +1,22 @@
+{% extends 'oscar_impersonate/dashboard/users/index.html' %}
+
+{% load i18n %}
+
+{% block user_list_row_actions %}
+
+    {{ block.super }}
+
+    {% if request.impersonator %}
+        {# Pending impersonate session #}
+        {% if user.pk == request.user.pk %}
+            {# This is the user we'are impersonating #}
+            <a href="{% url 'impersonate-stop' %}" class="btn btn-inverse">{% trans "Stop impersonation" %}</a>
+        {% endif %}
+    {% else %}
+        {% if user.pk != request.user.pk %}
+            {# display button “Log as” on other users than us #}
+            <a href="{% url 'impersonate-start' user.pk %}" class="btn btn-info">{% trans "Log as" %}</a>
+        {% endif %}
+    {% endif %}
+
+{% endblock user_list_row_actions %}
