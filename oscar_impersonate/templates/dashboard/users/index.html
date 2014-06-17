@@ -10,7 +10,7 @@
         {# Pending impersonate session #}
         {% if user.pk == request.user.pk %}
             {# This is the user we'are impersonating #}
-            <a href="{% url 'impersonate-stop' %}" class="btn btn-info">{% trans "Stop" %}</a>
+            <a href="{% url 'impersonate-stop' %}" class="btn btn-inverse">{% trans "Stop impersonification" %}</a>
         {% endif %}
     {% else %}
         {% if user.pk != request.user.pk %}
