@@ -8,7 +8,7 @@ setup(
     version=get_version(),
     url='https://github.com/oscaro/django-oscar-impersonate',
     author="Nicolas Dubois",
-    author_email="nicolas.c.dubois@gmail.com",
+    author_email="nicolas.dubois@oscaro.com",
     description="Wrapper of django-impersonate for django-oscar",
     long_description=open('README.rst').read(),
     keywords="django, oscar, impersonate",
