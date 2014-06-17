@@ -35,7 +35,7 @@ Use
     )
 
 2. Add both ``django-impersonate`` and ``django-oscar-impersonate`` middlewares
-    (``django-impersonate``'s must be declared before ``django-oscar-impersonate``s)
+    (``django-impersonate``'s must be declared before ``django-oscar-impersonate``'s)
 
 .. code:: python
 
