@@ -6,17 +6,6 @@
 
     {{ block.super }}
 
-    {% if request.impersonator %}
-        {# Pending impersonate session #}
-        {% if customer.pk == request.user.pk %}
-            {# This is the user we are impersonating #}
-            <a href="{% url 'impersonate-stop' %}" class="btn btn-inverse btn-large">{% trans "Stop impersonation" %}</a>
-        {% endif %}
-    {% else %}
-        {% if customer.pk != request.user.pk %}
-            {# display button “Log as” on other users than us #}
-            <a href="{% url 'impersonate-start' customer.pk %}" class="btn btn-info btn-large">{% trans "Log as this customer" %}</a>
-        {% endif %}
-    {% endif %}
+    {% include "oscar_impersonate/partials/buttons.html" with customer=customer btn_stop_css_class="btn btn-inverse btn-large" btn_start_css_class="btn btn-info btn-large" %}
 
 {% endblock user_detail_actions %}
