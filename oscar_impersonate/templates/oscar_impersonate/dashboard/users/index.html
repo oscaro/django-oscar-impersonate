@@ -1,7 +1,6 @@
 {% extends 'oscar/dashboard/users/index.html' %}
 
-{% load dashboard_tags %}
-{% load i18n %}
+{% load dashboard_tags i18n %}
 
 {% block user_list_row %}
     <td><input type="checkbox" name="selected_user" class="selected_user" value="{{ user.id }}"/></td>
