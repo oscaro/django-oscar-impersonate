@@ -5,10 +5,13 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.encoding import force_text
 
+from impersonate.middleware import ImpersonateMiddleware
+
 HTML_CONTENT_TYPES = ('text/html', 'application/xhtml+xml')
 
 
-class OscarImpersonateMiddleWare:
+class OscarImpersonateMiddleware(ImpersonateMiddleware):
+    body_open_tag_pattern = re.compile('<body[^>]*>')
 
     def process_response(self, request, response):
         """
@@ -34,24 +37,25 @@ class OscarImpersonateMiddleWare:
 
         html = force_text(response.content, encoding=settings.DEFAULT_CHARSET)
 
-        body_open_tag_pattern = '<body[^>]*>'
-        matches = re.findall(body_open_tag_pattern, html)
+        matches = self.body_open_tag_pattern.findall(html)
 
-        if not len(matches) > 0:
+        if not matches:
             """
             ``<body>`` open tag is not found.
             """
             return response
 
         body_open_tag = matches[0]
-        bits = re.split(body_open_tag_pattern, html, flags=re.IGNORECASE)
+        bits = self.body_open_tag_pattern.split(html)
 
-        if len(bits) > 1:
-            context = {'impersonator': request.impersonator, 'user': request.user}
-            toolbar = render_to_string('oscar_impersonate/partials/toolbar.html', context)
+        if len(bits) < 2:
+            return response
 
-            bits[-1] = body_open_tag + toolbar + bits[-1]
-            response.content = ''.join(bits)
+        context = {'impersonator': request.impersonator, 'user': request.user}
+        toolbar = render_to_string('oscar_impersonate/partials/toolbar.html', context)
+
+        bits.insert(-1, body_open_tag + toolbar)
+        response.content = ''.join(bits)
 
         if response.get('Content-Length', None):
             response['Content-Length'] = len(response.content)
