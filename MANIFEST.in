@@ -1,4 +1,4 @@
 include README.rst
 include LICENSE
-recursive-include docs *.rst *.png
+recursive-include docs *.png
 recursive-include oscar_impersonate/templates *.html
