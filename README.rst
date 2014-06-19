@@ -3,7 +3,7 @@ django-oscar-impersonate
 ========================
 
 :Info: Wrapper of django-impersonate for django-oscar
-:Version: 0.0.1-beta
+:Version: 0.1.1
 :Author: Nicolas Dubois <nicolas.dubois@oscaro.com>
 
 Dependencies
@@ -35,13 +35,12 @@ Use
         )
 
 
-#. Add both ``django-impersonate`` and ``django-oscar-impersonate`` middlewares
+#. Add ``django-oscar-impersonate`` middleware
     .. code:: python
 
         MIDDLEWARE_CLASSES = (
             # …
-            'impersonate.middleware.ImpersonateMiddleware',
-            'oscar_impersonate.middleware.OscarImpersonateMiddleWare',  # after impersonate's
+            'oscar_impersonate.middleware.OscarImpersonateMiddleware',
         )
 
 
@@ -54,14 +53,14 @@ Use
             # …
         )
 
-#. Add ``OSCAR_IMPERSONATE_TEMPLATE_DIRS`` to ``TEMPLATE_DIRS``, before Oscar's.
+#. Add ``OSCAR_IMPERSONATE_TEMPLATE_DIRS`` to ``TEMPLATE_DIRS``, before Oscar's
     .. code:: python
 
         from oscar import OSCAR_MAIN_TEMPLATE_DIR
         from oscar_impersonate import OSCAR_IMPERSONATE_TEMPLATE_DIR
 
         TEMPLATE_DIRS = (
-            location('templates'),
+            # …
             OSCAR_IMPERSONATE_TEMPLATE_DIR,
             OSCAR_MAIN_TEMPLATE_DIR,
         )

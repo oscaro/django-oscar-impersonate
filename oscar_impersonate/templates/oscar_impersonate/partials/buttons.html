@@ -1,0 +1,25 @@
+{% load i18n %}
+
+{% comment %}
+
+Variables
+    - request.user:             staff (who's access to Oscar dashboard)
+    - customer:                 current customer
+    - request.impersonator:     staff that impersonates a customer
+    - btn_start_css_class:      CSS classes for impersonation start button
+    - btn_stop_css_class:       CSS classes for impersonation stop button
+
+{% endcomment %}
+
+{% if request.impersonator %}
+    {# Pending impersonate session #}
+    {% if customer.pk == request.user.pk %}
+        {# This is the user we'are impersonating #}
+        <a href="{% url 'impersonate-stop' %}" class="{{ btn_stop_css_class|default:"btn btn-inverse" }}">{% trans "Stop impersonation" %}</a>
+    {% endif %}
+{% else %}
+    {% if customer.pk != request.user.pk %}
+        {# display button “Log as” on other users than us #}
+        <a href="{% url 'impersonate-start' customer.pk %}" class="{{ btn_start_css_class|default:"btn btn-info" }}">{% trans "Log as" %}</a>
+    {% endif %}
+{% endif %}
