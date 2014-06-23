@@ -1,0 +1,10 @@
+# Django framework
+django==1.6.5
+django-impersonate
+
+# py.test
+pytest
+pytest-cov
+pytest-django
+pytest-pep8
+pytest-sugar
