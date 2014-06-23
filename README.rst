@@ -96,6 +96,16 @@ Other
 
 For other features and custom settings, please check ``django-impersonate``'s docs.
 
+Tests
+=====
+
+.. code::
+
+    $ export DJANGO_SETTINGS_MODULE = 'tests.settings'
+    $ add2virtualenv .
+    $ pip install -r tests/requirements.txt
+    $ py.test
+
 License
 =======
 
