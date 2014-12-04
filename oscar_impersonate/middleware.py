@@ -19,7 +19,7 @@ class OscarImpersonateMiddleware(ImpersonateMiddleware):
         (*highly* inspired from Django Debug Toolbar's middleware)
         """
 
-        if getattr(request, 'impersonator', None):
+        if not getattr(request, 'impersonator', None):
             """
             No impersonification session, return response
             """
